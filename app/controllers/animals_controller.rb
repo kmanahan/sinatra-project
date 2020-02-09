@@ -8,4 +8,4 @@ class AnimalsController < ApplicationController
   #find by name 
   #find by species 
   #index of all  
-end https://learn.co/tracks/online-software-engineering-structured/css-continued/css-fundamentals/css-fundamentals#
+end 
