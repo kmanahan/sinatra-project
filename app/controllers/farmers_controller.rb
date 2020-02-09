@@ -22,10 +22,17 @@ class FarmersController < ApplicationController
   end 
   
   post "/farmers" do 
-    
+    if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
+      @farmer = Farmer.create(params) 
+      redirect "/farmers/#{@farmer.id}"
+    else 
+
+    end
+      
   end 
   
   get "/farmers/:id" do 
-    "welcome"
+    @farmer = Farmer.find_by(id: params[:id])
+    erb :"/farmers/show"
   end 
 end 
