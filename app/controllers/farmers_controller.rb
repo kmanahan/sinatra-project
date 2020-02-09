@@ -23,10 +23,12 @@ class FarmersController < ApplicationController
   
   post "/farmers" do 
     if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
+      #if username is already taken, error message to choose something else
       @farmer = Farmer.create(params) 
       redirect "/farmers/#{@farmer.id}"
     else 
-
+      redirect "signup"
+      #create error message
     end
       
   end 
@@ -34,5 +36,10 @@ class FarmersController < ApplicationController
   get "/farmers/:id" do 
     @farmer = Farmer.find_by(id: params[:id])
     erb :"/farmers/show"
+  end 
+  
+  get "/logout" do 
+    sesion.clear 
+    redirect "/"
   end 
 end 
