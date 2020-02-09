@@ -39,7 +39,7 @@ class FarmersController < ApplicationController
   end 
   
   get "/logout" do 
-    sesion.clear 
+    session.clear 
     redirect "/"
   end 
 end 
