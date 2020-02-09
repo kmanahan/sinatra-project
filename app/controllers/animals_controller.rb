@@ -1,7 +1,7 @@
 class AnimalsController < ApplicationController 
   #get new
   def "/animals/new" do 
-    erb :
+    erb :"/animals/new"
   end 
   #post new 
   @animal = Animal.create(params[])
