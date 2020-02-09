@@ -21,6 +21,10 @@ class FarmersController < ApplicationController
     erb :signup 
   end 
   
+  post "/farmers" do 
+    
+  end 
+  
   get "/farmers/:id" do 
     "welcome"
   end 
