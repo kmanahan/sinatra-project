@@ -29,30 +29,29 @@ class AnimalsController < ApplicationController
   end 
   
   get "/animals/:id/edit" do 
-    @animal = Animal.find_by(params[:id])
-    if logged_in?
-      if @animal.farmers == current_user 
-        erb :"animals/edit"
+    animal_item 
+    if logged_in? 
+      if authorized?(@animal)
+        erb :"/animals/edit" 
+      else 
+        redirect "animals/#{current_user.id}"
+      end 
+    else 
+      redirect "/" 
+    end
+  end
+  
+  patch "/animals/:id" do 
+    animal_item 
+    if logged_in? 
+      if authorized?(@animal)
+        @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
       else 
         redirect "farmers/#{current_user.id}"
-      end
+      end 
     else 
       redirect "/"
     end
-  end 
-  
-  patch "/animals/:id" do 
-    @animal = Animal.find_by(params[:id])
-    @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
-    if logged_in?
-      if @animal.farmers == current_user 
-      erb :"animals/edit"
-      else 
-        redirect "farmers/#{current_user.id}"
-      end
-    else
-      redirect "/animals/#{@animal.id}"
-    end 
   end
   
   delete "/animals/:id" do 
@@ -63,6 +62,12 @@ class AnimalsController < ApplicationController
     else 
       redirect "/animals" 
     end
+  end 
+  
+  private 
+  
+  def animal_item 
+    @animal = Animal.find_by(params[:id])
   end 
   
 end 

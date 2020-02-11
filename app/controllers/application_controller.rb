@@ -22,10 +22,14 @@ class ApplicationController < Sinatra::Base
     def current_user 
       Farmer.find_by(id: session[:farmer_id])
     end 
+    
     def logged_in? 
       !!current_user 
     end
     
+    def authorized?(animal)
+      animal.farmers == current_user
   end 
 
+  end 
 end
