@@ -1,1 +1,8 @@
-index page
+<h2>Animal's List</h2>
+<li><% @animal.each do |a| %>
+<ul><a href="/animals/<%=a.id %>"><%= a.name %></a></ul>
+<ul><%= a.species %></ul>
+<ul><%= a.sex %></ul>
+<br>
+<% end %>
+</li>

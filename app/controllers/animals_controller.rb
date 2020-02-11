@@ -1,4 +1,9 @@
 class AnimalsController < ApplicationController 
+  get "/animals" do 
+    @animal = Animal.all 
+    erb :"animals/index"
+  end 
+  
   #get new
   get "/animals/new" do 
     erb :"/animals/new"
@@ -25,13 +30,29 @@ class AnimalsController < ApplicationController
   
   get "/animals/:id/edit" do 
     @animal = Animal.find_by(params[:id])
-    erb :"animals/edit"
+    if logged_in?
+      if @animal.farmers == current_user 
+        erb :"animals/edit"
+      else 
+        redirect "farmers/#{current_user.id}"
+      end
+    else 
+      redirect "/"
+    end
   end 
   
   patch "/animals/:id" do 
     @animal = Animal.find_by(params[:id])
     @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
-    redirect "/animals/#{@animal.id}"
-  end 
+    if logged_in?
+      if @animal.farmers == current_user 
+      erb :"animals/edit"
+      else 
+        redirect "farmers/#{current_user.id}"
+      end
+    else
+      redirect "/animals/#{@animal.id}"
+    end 
+  end
   
 end 

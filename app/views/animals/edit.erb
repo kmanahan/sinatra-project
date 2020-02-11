@@ -1,6 +1,6 @@
 <h2>Edit</h2>
 
-<form class="" action="/animals<% @animal.id %>" method="post">
+<form class="" action="/animals/<%=@animal.id %>" method="post">
   <input type="hidden" name="method" value="patch">
   <label for="name">Enter Animal's Name</label>
   <input type="text" name="name" value="<%= @animal.name %>">
@@ -8,6 +8,6 @@
   <input type="text" name="species" value="<%= @animal.species %>"> 
   <label for="name">Enter Animal's Sex</label>
   <input type="text" name="sex" value="<%= @animal.sex %>">
-  <input type="submit" name="" value="Add">
+  <input type="submit" name="" value="Edit">
   
 </form>
