@@ -5,11 +5,11 @@ class AnimalsController < ApplicationController
   end 
   #post new 
   post "/animals" do 
-    if logged_in? 
+    if !logged_in? 
       redirect "/"
     end 
-    if params[:animal] != ""
-    @animal = Animal.create(name: params[:name], species: params[:species], gender: params[:sex], farmer_id: current_user.id)
+    if params[:animals] != ""
+    @animal = Animal.create(name: params[:name], species: params[:species], sex: params[:sex],farmer_id: current_user.id)
       redirect "/animals/#{@animal.id}"
     else
       redirect "/animals/new"
@@ -22,6 +22,16 @@ class AnimalsController < ApplicationController
     # erb vs redirect = all variable will be 'deleted' if redirected to another route (controller method)
     erb :"animals/show" 
   end 
-  #find by species 
-  #index of all  
+  
+  get "/animals/:id/edit" do 
+    @animal = Animal.find_by(params[:id])
+    erb :"animals/edit"
+  end 
+  
+  patch "/animals/:id" do 
+    @animal = Animal.find_by(params[:id])
+    @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
+    redirect "/animals/#{@animal.id}"
+  end 
+  
 end 

@@ -6,5 +6,6 @@ end
 #patch and delete
 use Rack::MethodOverride 
 
+use AnimalsController
 use FarmersController 
 run ApplicationController
