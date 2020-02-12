@@ -1,7 +1,11 @@
 class AnimalsController < ApplicationController 
   get "/animals" do 
-    @animal = Animal.all 
+     if !logged_in? 
+      redirect "/"
+    end 
+    if @animal = Animal.all 
     erb :"animals/index"
+  end
   end 
   
   #get new
