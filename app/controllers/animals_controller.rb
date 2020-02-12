@@ -55,13 +55,13 @@ class AnimalsController < ApplicationController
   end
   
   delete "/animals/:id" do 
-    @animal = Animal.find_by(params[:id])
-    if @animal.farmers == current_user 
+    @animal = Animal.find(params[:id])
+    # if @animal.farmers == current_user 
       @animal.destroy
       redirect "/animals"
-    else 
-      redirect "/animals" 
-    end
+    # else 
+    #   redirect "/animals" 
+    # end
   end 
   
   private 
