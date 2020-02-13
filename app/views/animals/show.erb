@@ -1,7 +1,7 @@
 <!--only show animals that belong to farmer-->
 <h2>Edit or Delete </h2>
 <p><%= @animal.name %></p>
-<% if @animal.farmers == current_user %>
+<!--<% if @animal.farmer == current_user %>-->
 
 <a href="/animals/<%= @animal.id %>/edit">Edit</a>
 
@@ -10,4 +10,4 @@
 <input type="submit" name="" value="delete animal"> 
 </form>
 
-<% end %>
+<!--<% end %>-->

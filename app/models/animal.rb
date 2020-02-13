@@ -1,3 +1,3 @@
 class Animal < ActiveRecord::Base
-  belongs_to :farmers 
+  belongs_to :farmer
 end

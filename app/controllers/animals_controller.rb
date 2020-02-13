@@ -42,7 +42,7 @@ class AnimalsController < ApplicationController
   
   get "/animals/:id/edit" do 
     animal_item 
-      if logged_in? && current_user == @animal.farmers
+      if logged_in? && current_user == @animal.farmer
         erb :"/animals/edit" 
       else 
          redirect "animals/#{current_user.id}"
@@ -52,7 +52,7 @@ class AnimalsController < ApplicationController
   patch "/animals/:id" do 
     animal_item 
      if logged_in? 
-       if logged_in && current_user == @animal.farmers
+       if logged_in? && current_user == @animal.farmer
         @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
         redirect "/animals/#{@animals.id}"
        else 
