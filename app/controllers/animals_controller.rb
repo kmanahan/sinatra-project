@@ -10,7 +10,12 @@ class AnimalsController < ApplicationController
   
   #get new
   get "/animals/new" do 
-    erb :"/animals/new"
+    if !logged_in? 
+      redirect "/"
+    end 
+    if
+      erb :"/animals/new"
+    end
   end 
   #post new 
   post "/animals" do 
