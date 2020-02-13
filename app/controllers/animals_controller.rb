@@ -51,15 +51,11 @@ class AnimalsController < ApplicationController
   
   patch "/animals/:id" do 
     animal_item 
-     if logged_in? 
        if logged_in? && current_user == @animal.farmer
         @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
         redirect "/animals/#{@animals.id}"
        else 
         redirect "farmers/#{current_user.id}"
-       end 
-     else 
-       redirect "/"
      end
   end
   
@@ -76,7 +72,7 @@ class AnimalsController < ApplicationController
   private 
   
   def animal_item 
-    @animal = Animal.find_by(params[:id])
+    @animal = Animal.find(params[:id])
   end 
   
 end 
