@@ -11,9 +11,10 @@ class FarmersController < ApplicationController
    #authenticate 
    if @farmer.authenticate(params[:password])
     session[:farmer_id] = @farmer.id
-    puts session
-    redirect "/farmers/#{@farmer.id}"
+    redirect "/animals"
    else 
+    # flash[:message] = "Something went wrong. Please try again."
+     erb :"animals/login"
    end 
   end 
   
