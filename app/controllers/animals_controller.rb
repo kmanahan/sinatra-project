@@ -53,9 +53,9 @@ class AnimalsController < ApplicationController
     animal_item 
        if logged_in? && current_user == @animal.farmer
         @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
-        redirect "/animals/#{@animals.id}"
+        redirect "/animals/#{@animal.id}"
        else 
-        redirect "farmers/#{current_user.id}"
+        redirect "farmers/#{current_user.id}/edit"
      end
   end
   
