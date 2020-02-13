@@ -1,0 +1,25 @@
+
+
+<h2>Edit</h2>
+
+<form class="" action="/farmers/<%=@farmer.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="name">Name</label>
+  <input type="text" name="name" value="<%= @farmer.name %>">
+  
+  <label for="name">Farm Name</label>
+  <input type="text" name="farm_name" value="<%= @farmer.farm_name %>"> 
+  
+  <label for="name">username</label>
+  <input type="text" name="username" value="<%= @farmer.username %>">
+  
+  <label for="name">password</label>
+  <input type="text" name="password" value="<%= @farmer.password_digest %>">
+  
+
+  <input type="submit" name="" value="Edit">
+  
+</form>
+
+
+

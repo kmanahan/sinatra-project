@@ -16,6 +16,7 @@ class AnimalsController < ApplicationController
       erb :"/animals/new"
     end
   end 
+  
   #post new 
   post "/animals" do 
     if !logged_in? 

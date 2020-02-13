@@ -43,4 +43,39 @@ class FarmersController < ApplicationController
     session.clear 
     redirect "/"
   end 
+  
+  get "/farmers/:id/edit" do 
+    # find_farmer
+      if logged_in? && current_user == @farmer.id
+        erb :"/farmers/edit" 
+      else 
+         redirect "farmers/#{current_user.id}"
+     end
+  end
+  
+  patch "/farmers/:id" do 
+    # find_farmer
+       if logged_in? && current_user == @farmer.id
+        @farmer.update(name: params[:name], farm_name: params[:farm_name], user: params[:user], username: params[:username], password: params[:password_digest])
+        redirect "/farmers/#{@farmer.id}"
+       else 
+        redirect "farmers/#{current_user.id}/edit"
+     end
+  end
+  
+  # delete "/animals/:id" do 
+  #   @animal = Animal.find(params[:id])
+  #   # if @animal.farmers == current_user 
+  #     @animal.destroy
+  #     redirect "/animals"
+  #   # else 
+  #   #   redirect "/animals" 
+  #   # end
+  # end 
+  
+  private 
+  def find_farmer 
+    @farmer = Farmer.find(params[:id])
+  end 
+  
 end 
