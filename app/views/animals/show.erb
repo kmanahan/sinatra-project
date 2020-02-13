@@ -1,10 +1,11 @@
 <!--only show animals that belong to farmer-->
-show page
+<h2>Add or Delete </h2>
 <p><%= @animal.name %></p>
 <!--<% if authorized?(@animal) %>-->
+
+<!--<% end %>-->
 <a href="/animals/<%= @animal.id %>/edit"> Edit </a>
 <form class="" action="/animals/<%= @animal.id %>" method="post">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" name="" value="delete animal"> 
 </form>
-<!--<% end %>-->

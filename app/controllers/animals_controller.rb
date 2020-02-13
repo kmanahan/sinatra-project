@@ -39,21 +39,22 @@ class AnimalsController < ApplicationController
   get "/animals/:id/edit" do 
     animal_item 
      if logged_in? 
-       if authorized?(@animal)
-        erb :"/animals/edit" 
-       else 
+      # if authorized?(@animal)
+        # erb :"/animals/edit" 
+      # else 
          redirect "animals/#{current_user.id}"
-       end 
-     else 
-       redirect "/" 
+    #   end 
+    else 
+      redirect "/" 
      end
   end
   
   patch "/animals/:id" do 
     animal_item 
      if logged_in? 
-       if authorized?(animal)
-        animal.update(name: params[:name], species: params[:species], sex: params[:sex])
+       if @animal.farmers == current_user
+        @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
+        redirect "/animals/#{@animals.id}"
        else 
         redirect "farmers/#{current_user.id}"
        end 
