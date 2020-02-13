@@ -1,11 +1,13 @@
 <!--only show animals that belong to farmer-->
-<h2>Add or Delete </h2>
+<h2>Edit or Delete </h2>
 <p><%= @animal.name %></p>
-<!--<% if authorized?(@animal) %>-->
+<% if @animal.farmers == current_user %>
 
-<!--<% end %>-->
-<a href="/animals/<%= @animal.id %>/edit"> Edit </a>
+<a href="/animals/<%= @animal.id %>/edit">Edit</a>
+
 <form class="" action="/animals/<%= @animal.id %>" method="post">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" name="" value="delete animal"> 
 </form>
+
+<% end %>

@@ -30,29 +30,29 @@ class AnimalsController < ApplicationController
   end
 
   get "/animals/:id" do
-  #find by id, dynamic route => look for better definition 
-    @animal = Animal.find_by(id: params[:id])
-    # erb vs redirect = all variable will be 'deleted' if redirected to another route (controller method)
+    if logged_in?
+  #find by id, dynamic route => look for better definition
+  @animal = Animal.find_by(id: params[:id])
+   # erb vs redirect = all variable will be 'deleted' if redirected to another route (controller method)
     erb :"animals/show" 
+  else 
+    redirect "/animals" 
+  end
   end 
   
   get "/animals/:id/edit" do 
     animal_item 
-     if logged_in? 
-      # if authorized?(@animal)
-        # erb :"/animals/edit" 
-      # else 
+      if logged_in? && current_user == @animal.farmers
+        erb :"/animals/edit" 
+      else 
          redirect "animals/#{current_user.id}"
-    #   end 
-    else 
-      redirect "/" 
      end
   end
   
   patch "/animals/:id" do 
     animal_item 
      if logged_in? 
-       if @animal.farmers == current_user
+       if logged_in && current_user == @animal.farmers
         @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
         redirect "/animals/#{@animals.id}"
        else 
