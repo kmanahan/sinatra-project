@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   helpers do 
     
     def current_user 
-      Farmer.find_by(id: session[:farmer_id])
+      @current_user ||= Farmer.find_by(id: session(:farmer_id))
     end 
     
     def logged_in? 
@@ -30,6 +30,6 @@ class ApplicationController < Sinatra::Base
     def authorized?(animal)
       animal.farmers == current_user
   end 
-
-  end 
+  
+ end
 end
