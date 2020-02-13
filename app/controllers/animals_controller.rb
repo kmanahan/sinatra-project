@@ -12,8 +12,7 @@ class AnimalsController < ApplicationController
   get "/animals/new" do 
     if !logged_in? 
       redirect "/"
-    end 
-    if
+   else
       erb :"/animals/new"
     end
   end 
