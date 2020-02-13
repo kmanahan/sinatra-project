@@ -3,7 +3,7 @@ class AnimalsController < ApplicationController
      if !logged_in? 
       redirect "/"
     else
-    @animal = animal.current_user 
+    @animal = current_user.animals
     erb :"animals/index"
   end
   end 
