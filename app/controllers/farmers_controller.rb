@@ -13,7 +13,7 @@ class FarmersController < ApplicationController
     session[:farmer_id] = @farmer.id
       redirect "/farmers/#{@farmer.id}"
    else 
-    # flash[:message] = "Something went wrong. Please try again."
+    flash[:message] = "username and/or password in not valid. please try again."
      redirect "/login"
    end 
   end 
@@ -28,8 +28,8 @@ class FarmersController < ApplicationController
       @farmer = Farmer.create(params) 
       redirect "/farmers/#{@farmer.id}"
     else 
+      flash[:message] = "please fill out all boxes"
       redirect "signup"
-      #bonus: create error message
     end
       
   end 

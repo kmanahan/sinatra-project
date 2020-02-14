@@ -11,6 +11,7 @@ class AnimalsController < ApplicationController
   #get new
   get "/animals/new" do 
     if !logged_in? 
+      flash[:message] = "please login first"
       redirect "/"
    else
       erb :"/animals/new"
@@ -38,6 +39,7 @@ class AnimalsController < ApplicationController
    # erb vs redirect = all variable will be 'deleted' if redirected to another route (controller method)
     erb :"animals/show" 
   else 
+    flash[:message] = "oops, you do not have access to this page"
     redirect "/animals" 
   end
   end 
@@ -47,6 +49,7 @@ class AnimalsController < ApplicationController
       if logged_in? && current_user == @animal.farmer
         erb :"/animals/edit" 
       else 
+          flash[:message] = "oops, you do not have access to this page"
          redirect "/animals/#{current_user.id}"
      end
   end

@@ -1,5 +1,5 @@
 require './config/environment'
-# require 'sinatra/flash'
+# require 'sinatra/flash' dont need because already in environment
 
 class ApplicationController < Sinatra::Base
   configure do
