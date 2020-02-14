@@ -9,12 +9,12 @@ class FarmersController < ApplicationController
    #find  
    @farmer = Farmer.find_by(username: params[:username])
    #authenticate 
-   if @farmer.authenticate(params[:password])
+   if @farmer && @farmer.authenticate(params[:password])
     session[:farmer_id] = @farmer.id
-    redirect "/farmers"
+      redirect "/farmers/#{@farmer.id}"
    else 
     # flash[:message] = "Something went wrong. Please try again."
-     erb :"animals/login"
+     redirect "/login"
    end 
   end 
   
