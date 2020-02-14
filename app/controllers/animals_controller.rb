@@ -47,7 +47,7 @@ class AnimalsController < ApplicationController
       if logged_in? && current_user == @animal.farmer
         erb :"/animals/edit" 
       else 
-         redirect "animals/#{current_user.id}"
+         redirect "/animals/#{current_user.id}"
      end
   end
   
@@ -57,18 +57,18 @@ class AnimalsController < ApplicationController
         @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
         redirect "/animals/#{@animal.id}"
        else 
-        redirect "farmers/#{current_user.id}/edit"
+        redirect "/farmers/#{current_user.id}/edit"
      end
   end
   
   delete "/animals/:id" do 
     @animal = Animal.find(params[:id])
-    # if @animal.farmers == current_user 
+    if @animal.farmer == current_user 
       @animal.destroy
       redirect "/animals"
-    # else 
-    #   redirect "/animals" 
-    # end
+    else 
+      redirect "/animals" 
+    end
   end 
   
   private 
