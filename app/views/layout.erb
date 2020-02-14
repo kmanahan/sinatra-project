@@ -25,10 +25,11 @@
         <a href="/login">login</a>
       <% end %>
     </div>
-    <% if flash[:message] %>
-      <center style ="color:red;"><%= flash[:message] %></center>
-    <% end %>
     <div class="wrapper">
+      <% if flash[:message] %>
+      <center style ="color:red;"><%= flash[:message] %></center>
+      <br>
+    <% end %>
 
         <%= yield %>
 
