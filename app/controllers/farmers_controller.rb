@@ -36,7 +36,7 @@ class FarmersController < ApplicationController
       # it would be better to include a message to the user
       # telling them what is wrong
 
-      flash[:message] = "Account creation failure"
+      flash[:message] = "Signup Failed, please try again"
       redirect '/signup'
     end
     end
