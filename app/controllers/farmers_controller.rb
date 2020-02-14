@@ -23,16 +23,23 @@ class FarmersController < ApplicationController
   end 
   
   post "/farmers" do 
-    if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
-      #bonus: if username is already taken, error message to choose something else
-      @farmer = Farmer.create(params) 
+    # if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
+    @farmer = Farmer.new(params)
+     if @farmer.save
+      # valid input
+      session[:farmer_id] = @farmer.id # actually logging the user in
+      # where do I go now?
+      # let's go to the user show page
       redirect "/farmers/#{@farmer.id}"
-    else 
-      flash[:message] = "please fill out all boxes"
-      redirect "signup"
+    else
+      # not valid input
+      # it would be better to include a message to the user
+      # telling them what is wrong
+
+      flash[:message] = "Account creation failure"
+      redirect '/signup'
     end
-      
-  end 
+    end
   
   get "/farmers/:id" do 
     @farmer = Farmer.find_by(id: params[:id])
