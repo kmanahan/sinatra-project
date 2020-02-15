@@ -23,19 +23,14 @@ class FarmersController < ApplicationController
   end 
   
   post "/farmers" do 
-    # if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
-    @farmer = Farmer.new(params)
-     if @farmer.save
+    if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
+      @farmer = Farmer.new(params)
+      @farmer.save
       # valid input
-      session[:farmer_id] = @farmer.id # actually logging the user in
-      # where do I go now?
-      # let's go to the user show page
+      # actually logging the user in
+      session[:farmer_id] = @farmer.id 
       redirect "/farmers/#{@farmer.id}"
     else
-      # not valid input
-      # it would be better to include a message to the user
-      # telling them what is wrong
-
       flash[:message] = "Signup Failed, please try again"
       redirect '/signup'
     end
