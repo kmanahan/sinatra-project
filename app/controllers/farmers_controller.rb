@@ -5,7 +5,6 @@ class FarmersController < ApplicationController
   end 
 
   post "/login" do 
-   #params:username, 
    #find  
    @farmer = Farmer.find_by(username: params[:username])
    #authenticate 
