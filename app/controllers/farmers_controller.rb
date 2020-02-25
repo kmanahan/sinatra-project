@@ -22,16 +22,20 @@ class FarmersController < ApplicationController
   end 
   
   post "/farmers" do 
-    if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
+    # if params[:name] != "" &&  params[:username] != "" &&  params[:password] != ""
       @farmer = Farmer.new(params)
-      @farmer.save
-      # valid input
-      # actually logging the user in
-      session[:farmer_id] = @farmer.id 
-      redirect "/farmers/#{@farmer.id}"
+      if @farmer.valid? 
+          @farmer.save
+        session[:farmer_id] = @farmer.id 
+        redirect "/farmers/#{@farmer.id}"
+      # else
+      #   flash[:message] = "usename already taken"
+      # redirect '/signup'
+      # end
     else
       flash[:message] = "Signup Failed, please try again"
       redirect '/signup'
+ 
     end
     end
   

@@ -24,7 +24,9 @@ class AnimalsController < ApplicationController
       redirect "/"
     end 
     if params[:animals] != ""
-    @animal = Animal.create(name: params[:name], species: params[:species], sex: params[:sex],farmer_id: current_user.id)
+    # @animal = Animal.create(name: params[:name], species: params[:species], sex: params[:sex],farmer_id: current_user.id)
+    # @book = @author.books.create(published_at: Time.now)
+    @animal = current_user.animals.create(name: params[:name], species: params[:species], sex: params[:sex])
       redirect "/animals/#{@animal.id}"
     else
       redirect "/animals/new"
