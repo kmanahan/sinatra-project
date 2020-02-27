@@ -62,10 +62,12 @@ class AnimalsController < ApplicationController
   patch "/animals/:id" do 
     animal_item 
        if logged_in? && current_user == @animal.farmer
+         if @animal.valid?
         @animal.update(name: params[:name], species: params[:species], sex: params[:sex])
         redirect "/animals/#{@animal.id}"
        else 
         redirect "/farmers/#{current_user.id}/edit"
+      end
      end
   end
   
