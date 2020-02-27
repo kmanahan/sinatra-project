@@ -28,9 +28,9 @@ class ApplicationController < Sinatra::Base
       !!current_user 
     end
     
-    def authorized?(animal)
-      animal.farmer == current_user
-  end 
+  #   def authorized?(animal)
+  #     animal.farmer == current_user
+  # end 
   
  end
 end

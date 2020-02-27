@@ -23,12 +23,15 @@ class AnimalsController < ApplicationController
     if !logged_in? 
       redirect "/"
     end 
-    if params[:animals] != ""
-    # @animal = Animal.create(name: params[:name], species: params[:species], sex: params[:sex],farmer_id: current_user.id)
-    # @book = @author.books.create(published_at: Time.now)
-    @animal = current_user.animals.create(name: params[:name], species: params[:species], sex: params[:sex])
+    #create new animal
+    @animal = Animal.new(params)
+    # make sure input is valid (ActiveRecord method)
+      if @animal.valid?
+        @animal.save
+         @animal = current_user.animals.create(params)
       redirect "/animals/#{@animal.id}"
     else
+      flash[:message] = "something went wrong"
       redirect "/animals/new"
     end 
   end
