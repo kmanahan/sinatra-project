@@ -28,10 +28,6 @@ class FarmersController < ApplicationController
           @farmer.save
         session[:farmer_id] = @farmer.id 
         redirect "/farmers/#{@farmer.id}"
-      # else
-      #   flash[:message] = "usename already taken"
-      # redirect '/signup'
-      # end
     else
       flash[:message] = "Signup Failed, please try again"
       redirect '/signup'
