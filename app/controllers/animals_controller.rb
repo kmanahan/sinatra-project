@@ -7,19 +7,13 @@ class AnimalsController < ApplicationController
   
   #get new
   get "/animals/new" do 
-    if !logged_in? 
-      flash[:message] = "please login first"
-      redirect "/"
-   else
+    redirect_if_not_logged_in 
       erb :"/animals/new"
-    end
   end 
   
   #post new 
   post "/animals" do 
-    if !logged_in? 
-      redirect "/"
-    end 
+    redirect_if_not_logged_in
     #create new animal
     @animal = Animal.new(params)
     # make sure input is valid (ActiveRecord method)
@@ -92,7 +86,9 @@ class AnimalsController < ApplicationController
   
   def redirect_if_not_logged_in 
     if !logged_in? 
+      flash[:message] = "please log in first"
       redirect "/"
+    end
   end
 
 end 
