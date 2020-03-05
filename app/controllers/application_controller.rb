@@ -28,5 +28,7 @@ class ApplicationController < Sinatra::Base
       !!current_user 
     end
     
+    def authorized?
+    end
  end
 end

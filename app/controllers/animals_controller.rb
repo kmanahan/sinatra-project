@@ -87,4 +87,7 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
   end 
   
+  def redirect_if_not_logged_in 
+  end 
+  
 end 
