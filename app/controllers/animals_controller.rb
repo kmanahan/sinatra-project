@@ -1,7 +1,7 @@
 class AnimalsController < ApplicationController 
   get "/animals" do 
     redirect_if_not_logged_in
-    @animal = current_user.animals
+    @animals = Animal.all
     erb :"animals/index"
   end 
   

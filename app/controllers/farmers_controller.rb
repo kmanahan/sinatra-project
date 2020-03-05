@@ -36,9 +36,10 @@ class FarmersController < ApplicationController
     end
   
   get "/farmers/:id" do 
-    @farmer = Farmer.find_by(id: params[:id])
+    @farmer = current_user
     erb :"/farmers/show"
   end 
+  
   
   get "/logout" do 
     session.clear 

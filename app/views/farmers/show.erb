@@ -1,8 +1,7 @@
 <h2>Welcome <%=@farmer.name%></h2>
 <h2>My Animals</h2> 
 <% @farmer.animals.each do |a|%>
-<ul><%= a.name %></ul>
-<ul><%= a.species %></ul>
+<ul><a href="/animals/<%=a.id %>"><%= a.name %></a></ul><ul><%= a.species %></ul>
 <ul><%= a.sex %></ul>
 <br>
 <% end %>
