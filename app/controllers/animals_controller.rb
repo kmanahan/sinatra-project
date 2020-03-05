@@ -1,11 +1,8 @@
 class AnimalsController < ApplicationController 
   get "/animals" do 
-     if !logged_in? 
-      redirect "/"
-    else
+    redirect_if_not_logged_in
     @animal = current_user.animals
     erb :"animals/index"
-  end
   end 
   
   #get new
@@ -94,6 +91,8 @@ class AnimalsController < ApplicationController
   end 
   
   def redirect_if_not_logged_in 
-  end 
+    if !logged_in? 
+      redirect "/"
+  end
 
 end 
