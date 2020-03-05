@@ -1,9 +1,9 @@
 <h2>All The Animal's List</h2>
 <li><% @animals.each do |a| %>
-
+<ul><%= a.name %></ul>
 <ul><%= a.species %></ul>
 <ul><%= a.sex %></ul>
-<ul>Farmer's id:<%= a.farmer_id %></ul>
+<ul>Farmer's Name: <%= a.farmer.name %></ul>
 <br>
 <% end %>
 </li>
